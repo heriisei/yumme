@@ -3,9 +3,9 @@
   top: -3em;
   display: inline-block;
   padding: 0 1em;
-  background-color: red;
+  background-color: $main-color;
   line-height: 3em;
-  color: white;
+  color: $white-color;
   z-index: 100;
 
   &:focus {
@@ -15,28 +15,44 @@
 
 header {
   display: flex;
-  position: sticky;
+  place-items: center;
   top: 0;
-  box-shadow: 0 4px 10px 2px hsl(0 100% 48% / 0.3);
+  height: 6rem;
+  width: 100%;
+  background-color: $main-color;
 }
 
 .nav-container {
+  position: fixed;
   display: flex;
+  place-content: center;
   align-items: center;
   height: 64px;
   width: 100%;
   padding: 0 1rem;
-  background-color: $main-color;
-  color: $text-white;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.nav-logo__img {
+  height: 3rem;
 }
 
 .btn-hamburger {
+  position: fixed;
+  top: 1.5rem;
+  left: 1rem;
   border: none;
-  background-color: transparent;
+  background-color: $main-color;
   width: 3rem;
   height: 3rem;
-  padding: 0.5rem;
-  border-radius: 8px;
+  padding: 0.8rem;
+  border-radius: 50%;
+  box-shadow: $btn-main-shadow;
+  z-index: 1;
 
   & svg {
     fill: $white-color;
@@ -44,41 +60,51 @@ header {
 
   &:hover {
     cursor: pointer;
-    background-color: $white-color;
-
-    & svg {
-      fill: $main-color;
-    }
   }
 }
 
 .nav-drawer {
   position: fixed;
-  transform: translate(-101%, 0);
+  top: 6rem;
+  left: 1rem;
+  transform: scale(0);
+  transform-origin: 0 0;
   transition: transform 0.3s ease-in-out;
-  // top: 0;
-  // left: 0;
-  height: 100%;
+  height: auto;
   width: 70%;
   background-color: $main-color;
+  border-radius: 2rem;
+  box-shadow: 0px 6px 12px -2px #590d1c;
+  z-index: 2;
 
   &.is-open {
-    transform: translate(0, 0);
+    transform: scale(1);
   }
-}
 
+  // position: fixed;
+  // top: 0;
+  // transform: translate(-101%, 0);
+  // transition: transform 0.3s ease-in-out;
+  // height: 100%;
+  // width: 70%;
+  // background-color: $main-color;
+  // z-index: 2;
+
+  // &.is-open {
+  //   transform: translate(0, 0);
+  // }
+}
 .nav-drawer__list {
   list-style: none;
   padding: 0;
 }
-
 .nav-drawer__item {
   margin: 0.25rem 0;
 
   a {
     display: inline-block;
     width: 100%;
-    padding: 0 1rem;
+    padding: 0 2rem;
     color: $text-white;
     line-height: 3;
     text-decoration: none;

@@ -2,14 +2,27 @@
   box-sizing: border-box;
 }
 
-body {
-  padding: 0;
-  margin: 0;
-  font-family: $content-font;
-  line-height: 1.4;
-}
 
 html, body, main {
   min-height: 100%;
   width: 100%;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: $main-color;
+  font-family: $content-font;
+  line-height: 1.4;
+}
+
+main {
+  position: absolute;
+  top: 6rem;
+  background: $white-color;
+  border-radius: 2rem;
+}
+
+.main__content {
+  padding: 0 1rem;
 }

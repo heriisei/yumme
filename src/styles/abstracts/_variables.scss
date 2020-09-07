@@ -4,7 +4,11 @@ $main-color: hsl(348, 100%, 46%);
 $secondary-color: hsl(197, 100%, 50%);
 $white-color: hsl(0, 0%, 100%);
 
+$main-shadow: hsl(348, 75%, 20%);
+
 $text-main: hsl(348, 100%, 46%);
 $text-secondary: hsl(197, 100%, 50%);
 $text-white: hsla(0, 0%, 100%, 0.9);
 $text-black: hsla(0, 0%, 0%, 0.9);
+
+$btn-main-shadow: 0px 6px 16px -8px $main-shadow;
