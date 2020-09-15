@@ -28,6 +28,14 @@ module.exports = {
       template: path.resolve(__dirname, 'src/templates/index.html'),
       filename: 'index.html',
     }),
+    new HtmlWebpackPlugin ({
+      template: "./src/pages/nav.html",
+      filename: "./pages/nav.html"
+    }),
+    new HtmlWebpackPlugin ({
+      template: "./src/pages/home.html",
+      filename: "./pages/home.html"
+    }),
     new CopyWebpackPlugin({
       patterns: [
         {

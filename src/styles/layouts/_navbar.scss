@@ -16,6 +16,7 @@
 header {
   display: flex;
   place-items: center;
+  place-content: center;
   top: 0;
   height: 6rem;
   width: 100%;
@@ -37,6 +38,9 @@ header {
   align-items: center;
   height: 100%;
 }
+.nav-logo a {
+  line-height: 0;
+}
 .nav-logo__img {
   height: 3rem;
 }
@@ -51,16 +55,38 @@ header {
   height: 3rem;
   padding: 0.8rem;
   border-radius: 50%;
-  box-shadow: $btn-main-shadow;
+  box-shadow: $shadow-med-red;
   z-index: 1;
 
   & svg {
-    fill: $white-color;
+    // fill: $white-color;
   }
 
   &:hover {
     cursor: pointer;
   }
+}
+
+.hamburger-line-top {
+  transform-origin: top left;
+  transition: all 0.3s;
+}
+.btn-hamburger.is-active .hamburger-line-top {
+  transform: rotate(45deg) translate(15px, -15px);
+}
+.hamburger-line-mid {
+  opacity: 1;
+  transition: all 0.3s;
+}
+.btn-hamburger.is-active .hamburger-line-mid {
+  opacity: 0;
+}
+.hamburger-line-btm {
+  transform-origin: bottom left;
+  transition: all 0.3s;
+}
+.btn-hamburger.is-active .hamburger-line-btm {
+  transform: rotate(-45deg) translate(15px, 20px);
 }
 
 .nav-drawer {
@@ -69,50 +95,138 @@ header {
   left: 1rem;
   transform: scale(0);
   transform-origin: 0 0;
-  transition: transform 0.3s ease-in-out;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
   height: auto;
   width: 70%;
+  padding: 0 1rem;
   background-color: $main-color;
-  border-radius: 2rem;
-  box-shadow: 0px 6px 12px -2px #590d1c;
+  border-radius: 1.4rem;
+  box-shadow: $shadow-med-red;
   z-index: 2;
 
   &.is-open {
     transform: scale(1);
+    opacity: 1;
   }
-
-  // position: fixed;
-  // top: 0;
-  // transform: translate(-101%, 0);
-  // transition: transform 0.3s ease-in-out;
-  // height: 100%;
-  // width: 70%;
-  // background-color: $main-color;
-  // z-index: 2;
-
-  // &.is-open {
-  //   transform: translate(0, 0);
-  // }
 }
-.nav-drawer__list {
+.nav-bar__list,
+.nav-drawer__list,
+.nav-footer__list {
   list-style: none;
   padding: 0;
 }
-.nav-drawer__item {
+.nav-bar__list {
+  display: none;
+}
+
+.nav-drawer__list .nav__item {
   margin: 0.25rem 0;
 
   a {
     display: inline-block;
     width: 100%;
-    padding: 0 2rem;
+    padding: 0 1rem;
     color: $text-white;
+    font-weight: 700;
     line-height: 3;
     text-decoration: none;
+    border-radius: 1rem;
+    transition: all 0.2s;
 
     &:hover {
       cursor: pointer;
       background-color: $white-color;
       color: $text-main;
+      border-radius: 1rem;
     }
+  }
+}
+
+.nav-footer {
+  padding: 2rem 2rem 0;
+}
+.nav-footer__list .nav__item a {
+  display: inline-block;
+  width: auto;
+  color: $text-white-80;
+  font-weight: 400;
+  line-height: 3;
+  text-decoration: none;
+  border-radius: 0;
+  transition: all 0.2s;
+
+  &:hover {
+    cursor: pointer;
+    color: $text-white-100;
+  }
+}
+
+@include media(">=large") {
+  header {
+    background-color: $white-color;
+  }
+
+  .nav-container {
+    max-width: 1000px;
+    place-content: space-between;
+    background-color: $main-color;
+    padding: 0 0.5rem;
+    border-radius: 1.4rem;
+    box-shadow: $shadow-med-red;
+    z-index: 5;
+  }
+
+  .nav-logo {
+    margin-left: 2rem;
+  }
+  .nav-logo__img {
+    height: 2rem;
+  }
+
+  .nav-footer {
+    display: flex;
+    padding: 2rem 2rem;
+  }
+  .nav-footer .nav-logo {
+    height: 3.5rem;
+    margin: 0;
+  }
+  .nav-footer__list {
+    margin: 0 2rem 0 4rem;
+  }
+
+  .nav-bar__list {
+    display: flex;
+    margin: 0;
+  }
+  .nav-bar__list .nav__item {
+    margin: 0.25rem 0;
+
+    a {
+      display: inline-block;
+      width: 100%;
+      padding: 0 2rem;
+      color: $text-white;
+      font-weight: 700;
+      line-height: 3;
+      text-decoration: none;
+      border-radius: 1rem;
+      transition: all 0.2s;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $white-color;
+        color: $text-main;
+        border-radius: 1rem;
+      }
+    }
+  }
+  .nav-drawer__list {
+    display: none;
+  }
+
+  .btn-hamburger {
+    display: none;
   }
 }

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start-dev": "webpack-dev-server --config webpack.dev.js",
+    "start-dev": "webpack-dev-server --config webpack.dev.js --host 0.0.0.0",
     "build": "webpack --config webpack.prod.js",
     "test": "karma start"
   },
@@ -37,6 +37,8 @@
     "whatwg-fetch": "^3.2.0"
   },
   "dependencies": {
+    "axios": "^0.20.0",
+    "include-media": "^1.4.9",
     "regenerator-runtime": "^0.13.5"
   }
 }

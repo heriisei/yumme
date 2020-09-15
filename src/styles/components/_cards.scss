@@ -1,0 +1,80 @@
+.restaurant-card {
+  margin-top: 0.5rem;
+  border-radius: 1rem;
+  transition: all 0.3s;
+  box-shadow: $shadow-small-black;
+  overflow: hidden;
+
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+  }
+}
+
+.restaurant-card__header {
+  position: relative;
+  height: 200px;
+  margin: 0;
+  background: $gray-color;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  figcaption {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    color: $white-color;
+    font-weight: 700;
+    background: linear-gradient(transparent, hsl(0 0% 0% / 50%), hsl(0deg 0% 0% / 60%), hsl(0deg 0% 0% / 80%));
+  }
+}
+
+.restaurant-card__body {
+  padding: 1rem;
+  min-height: calc(2rem + (1.4rem * 4));
+}
+.restaurant-card__rating {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  padding: 0.3rem;
+  padding-right: 0.6rem;
+  display: flex;
+  place-items: center;
+  font-size: $smaller-font;
+  font-weight: 700;
+  line-height: 1.3rem;
+  background-color: hsla(0, 0%, 100%, 1);
+  border-radius: 2rem;
+}
+.rating-icon {
+  text-align: center;
+  color: $white-color;
+  font-size: $smaller-font;
+  margin-right: 0.3rem;
+  background-color: $gold-color;
+  border-radius: 50%;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+.restaurant-card__desc {
+  display: -webkit-box;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+@include media(">=large") {
+  .restaurant-by-city__item {
+    width: 24rem;
+    padding: 0 1rem;
+  }
+}

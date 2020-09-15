@@ -1,14 +1,28 @@
 $content-font: ('Helvetica', 'Arial', sans-serif);
 
 $main-color: hsl(348, 100%, 46%);
+$main-color-darker: hsl(348, 100%, 35%, 1);
 $secondary-color: hsl(197, 100%, 50%);
 $white-color: hsl(0, 0%, 100%);
+$gold-color: hsl(45, 100%, 51%);
+$gray-color: hsl(0, 0%, 70%);
+$main-shadow: hsla(348, 100%, 25%, 0.9);
+$black-shadow: hsla(0, 0%, 0%, 0.6);
 
-$main-shadow: hsl(348, 75%, 20%);
+
+$smaller-font: 0.8rem;
 
 $text-main: hsl(348, 100%, 46%);
 $text-secondary: hsl(197, 100%, 50%);
 $text-white: hsla(0, 0%, 100%, 0.9);
+$text-white-80: hsla(0, 0%, 100%, 0.8);
+$text-white-100: hsla(0, 0%, 100%, 1);
 $text-black: hsla(0, 0%, 0%, 0.9);
 
-$btn-main-shadow: 0px 6px 16px -8px $main-shadow;
+$shadow-small-black: 0 2px 6px -2px $black-shadow;
+$shadow-med-red: 0px 6px 16px -8px $main-shadow;
+
+$breakpoints: (
+  medium: 794px,
+  large: 993px
+);
