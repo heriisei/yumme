@@ -3,24 +3,22 @@ const axios = require('axios');
 class ExternalRestaurant extends HTMLElement {
   connectedCallback() {
     this.render();
-    this.apiCall();
+    this.constructor.apiCall();
   }
 
-  async apiCall() {
+  static async apiCall() {
     const api = axios.create({
       baseURL: 'https://developers.zomato.com/api/v2.1/search?entity_id=74&entity_type=city&count=10&category=9&sort=rating&order=desc',
-      headers: {'user-key': '854bcb1aac0878e90a5752af952fe861'}
-    })
+      headers: { 'user-key': '854bcb1aac0878e90a5752af952fe861' },
+    });
 
     try {
-      const response = async function() {
-        return (await api.get()).data.restaurants;
-      }
-      const responseData = await response();
+      const response = await api.get();
+      const responseData = response.data.restaurants;
 
       const restaurantExtElem = document.querySelector('.restaurant-by-city__list.restaurant-external');
-      let listElems = [];
-      responseData.forEach(restaurant => {
+      const listElems = [];
+      responseData.forEach((restaurant) => {
         const resPhone = restaurant.restaurant.phone_numbers.split(', ');
         listElems.push(
           `
@@ -39,17 +37,17 @@ class ExternalRestaurant extends HTMLElement {
                 <div class="restaurant-card__body">
                   <div class="restaurant-card__desc">
                     <div class="restaurant-card__cost">
-                      Rp${restaurant.restaurant.average_cost_for_two.toLocaleString().replace(/,/g,'.')} <span class="text-gray">for two people (approx.)</span>
+                      Rp${restaurant.restaurant.average_cost_for_two.toLocaleString().replace(/,/g, '.')} <span class="text-gray">for two people (approx.)</span>
                     </div>
                     <div class="restaurant-card__phone">
                       ${
-                        (function phone() {
-                          let elems = [];
-                          resPhone.forEach(phone => {
+                        (function phoneNumbers() {
+                          const elems = [];
+                          resPhone.forEach((phone) => {
                             elems.push(`<a href="tel:${phone}">(${phone})</a> `);
                           });
                           return elems.join('');
-                        })()
+                        }())
                       }
                     </div>
                     <div class="restaurant-card__location">
@@ -59,12 +57,10 @@ class ExternalRestaurant extends HTMLElement {
                 </div>
               </article>
             </li>
-          `
-        )
+          `,
+        );
       });
       restaurantExtElem.innerHTML += listElems.join('');
-
-
     } catch (error) {
       console.log(error);
     }
@@ -87,8 +83,8 @@ class ExternalRestaurant extends HTMLElement {
           </div>
         </section>
       </li>
-    `
+    `;
   }
 }
 
-customElements.define('external-restaurant', ExternalRestaurant)
+customElements.define('external-restaurant', ExternalRestaurant);

@@ -1,28 +1,28 @@
-const jsonData = require('./../../DATA.json');
-import './external-restaurant.js';
+import './external-restaurant';
+import jsonData from '../../DATA.json';
 
 class RestaurantList extends HTMLElement {
   connectedCallback() {
     this.render();
-    this.filteredData();
+    this.constructor.filteredData();
   }
 
-  filteredData() {
+  static filteredData() {
     const data = jsonData.restaurants;
-    const filteredCity = removeDuplicates(data);
     function removeDuplicates(array) {
-      let tempArray = [];
-      array.map(item => {
-        if(!tempArray.includes(item.city)) {
+      const tempArray = [];
+      array.forEach((item) => {
+        if (!tempArray.includes(item.city)) {
           tempArray.push(item.city);
         }
-      })
+      });
       return tempArray.sort();
     }
+    const filteredCity = removeDuplicates(data);
 
     const restaurantListElem = document.querySelector('.restaurant-all__list');
-    let listElems = [];
-    filteredCity.forEach(city => {
+    const listElems = [];
+    filteredCity.forEach((city) => {
       listElems.push(
         `
           <li class="restaurant-all__item">
@@ -35,34 +35,35 @@ class RestaurantList extends HTMLElement {
               </h3>
               <div class="restaurant-by-city__list-wrapper">
                 <ul class="restaurant-by-city__list">
-                  ${(function populate() {
-                    let elems = [];
-                    data.forEach(restaurant => {
-                      if (restaurant.city === city) {
-                        elems.push(`
-                          <li class="restaurant-by-city__item">
-                            <article class="restaurant-card" tabindex="0">
-                              <figure class="restaurant-card__header">
-                                <img src="${restaurant.pictureId}" alt="${restaurant.name} Restaurant Photo" loading="lazy" height="336" width ="200" aria-hidden="true"/>
-                                <figcaption aria-label="${restaurant.name} Restaurant">${restaurant.name}</figcaption>
-                                <div class="restaurant-card__rating" aria-label="${restaurant.rating}-star Rating"><span class="rating-icon">★</span>${restaurant.rating}</div>
-                              </figure>
-                              <div class="restaurant-card__body">
-                                <div class="restaurant-card__desc">${restaurant.description}</div>
-                              </div>
-                            </article>
-                          </li>
-                        `);
-                      }
-                    });
-                    return elems.join('');
-                  })()
+                  ${
+                    (function populateRestaurantCard() {
+                      const elems = [];
+                      data.forEach((restaurant) => {
+                        if (restaurant.city === city) {
+                          elems.push(`
+                            <li class="restaurant-by-city__item">
+                              <article class="restaurant-card" tabindex="0">
+                                <figure class="restaurant-card__header">
+                                  <img src="${restaurant.pictureId}" alt="${restaurant.name} Restaurant Photo" loading="lazy" height="336" width ="200" aria-hidden="true"/>
+                                  <figcaption aria-label="${restaurant.name} Restaurant">${restaurant.name}</figcaption>
+                                  <div class="restaurant-card__rating" aria-label="${restaurant.rating}-star Rating"><span class="rating-icon">★</span>${restaurant.rating}</div>
+                                </figure>
+                                <div class="restaurant-card__body">
+                                  <div class="restaurant-card__desc">${restaurant.description}</div>
+                                </div>
+                              </article>
+                            </li>
+                          `);
+                        }
+                      });
+                      return elems.join('');
+                    }())
                   }
                 </ul>
               </div>
             </section>
           </li>
-        `
+        `,
       );
     });
     restaurantListElem.innerHTML += listElems.join('');
@@ -74,7 +75,7 @@ class RestaurantList extends HTMLElement {
       <h2 tabindex="0" aria-label="List of all Restaurant">Restaurant</h2>
       <ul class="restaurant-all__list">
       </ul>
-    `
+    `;
   }
 }
 
